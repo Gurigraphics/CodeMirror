@@ -288,6 +288,11 @@ CodeMirror.defineMode("gas", function(_config, parserConfig) {
         nextUntilUnescaped(stream, '"');
         return "string";
       }
+      
+      if (ch === ';') {
+        nextUntilUnescaped(stream, '\n');
+        return "comment";
+      }
 
       if (ch === '.') {
         stream.eatWhile(/\w/);
